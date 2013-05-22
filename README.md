@@ -1,4 +1,4 @@
-algo
+algorithms
 ====
 
 Review of algorithms
