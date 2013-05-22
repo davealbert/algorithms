@@ -29,24 +29,67 @@
 
   // Remove last comma and space
   string = [string substringToIndex:[string length]-2];
-  NSLog(@"\n%@\n\n",string);
+  NSLog(@"%@",string);
 }
 
-+ (NSMutableArray *)bubbleSortArray:(NSMutableArray *)originalArray {
-  int length = (int)[originalArray count] - 1;
++ (BOOL)verifyArray:(NSArray *)array {
+  BOOL isOK = YES;
 
+  // TODO: see if this loop can be improved
+  for (int i=0; i<[array count]-2; i++) {
+    if ([[array objectAtIndex:i] isGreaterThan:[array objectAtIndex:i+1]]) {
+      NSAssert(0, @"**  verifyArray:NO  Sort failed  **");
+      isOK = NO;
+    }
+  }
+
+  return isOK;
+}
+
++ (void)swapArray:(NSMutableArray *)originalArray pos1:(int)x pos2:(int)y {
+  NSNumber *temp = [originalArray objectAtIndex:x];
+  [originalArray replaceObjectAtIndex:x withObject:[originalArray objectAtIndex:y]];
+  [originalArray replaceObjectAtIndex:y withObject:temp];
+
+}
+
++ (void)bubbleSortArray:(NSMutableArray *)originalArray {
+  int length = (int)[originalArray count] - 1;
   for (int i=length; i>=0; i--) {
     for (int j=i-1; j>=0; j--) {
       if ([[originalArray objectAtIndex:j] isGreaterThan:[originalArray objectAtIndex:i]]) {
         //swap
-        NSNumber *temp = [originalArray objectAtIndex:j];
-        [originalArray replaceObjectAtIndex:j withObject:[originalArray objectAtIndex:i]];
-        [originalArray replaceObjectAtIndex:i withObject:temp];
+        [Sort swapArray:originalArray pos1:i pos2:j];
       }
     }
   }
+}
 
-  return originalArray;
++ (int)partitionArray:(NSMutableArray *)originalArray start:(int)start end:(int)end {
+  int pivot, i, j;
+
+  pivot = [[originalArray objectAtIndex:start]intValue];
+  i = start;
+  j = end + 1;
+
+  while (true) {
+    do ++i; while( [[originalArray objectAtIndex:i] intValue] <= pivot && i<end );
+   	do --j; while( [[originalArray objectAtIndex:j] intValue] > pivot );
+    if (i>=j) break;
+    [Sort swapArray:originalArray pos1:i pos2:j];
+  }
+  [Sort swapArray:originalArray pos1:start pos2:j];
+
+  return j;
+}
+
++ (void)quickSortArray:(NSMutableArray *)originalArray start:(int)start end:(int)end {
+  int j;
+  if (start < end) {
+    j = [Sort partitionArray:originalArray start:start end:end];
+    [Sort quickSortArray:originalArray start:start end:j-1];
+    [Sort quickSortArray:originalArray start:j+1 end:end];
+  }
 }
 
 @end
