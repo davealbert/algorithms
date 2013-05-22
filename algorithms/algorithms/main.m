@@ -7,16 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Sort.h"
 
-int main(int argc, const char * argv[])
-{
+#define ARRAY_SIZE 100
 
+int main(int argc, const char * argv[]) {
+  
   @autoreleasepool {
-      
-      // insert code here...
-      NSLog(@"Hello, World!");
-      
+    printf("Running...\n");
+    NSMutableArray *randomIntegers = [Sort randomIntegerArrayOfLength:ARRAY_SIZE];
+    [Sort dumpArray:randomIntegers];
+    [Sort dumpArray:randomIntegers];
   }
-    return 0;
+  return 0;
 }
 
