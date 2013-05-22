@@ -12,5 +12,6 @@
 
 + (NSMutableArray *)randomIntegerArrayOfLength:(int)length;
 + (void)dumpArray:(NSArray *)array;
++ (NSMutableArray *)bubbleSortArray:(NSMutableArray *)originalArray;
 
 @end

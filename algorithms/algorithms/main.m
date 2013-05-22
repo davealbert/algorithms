@@ -16,8 +16,10 @@ int main(int argc, const char * argv[]) {
   @autoreleasepool {
     printf("Running...\n");
     NSMutableArray *randomIntegers = [Sort randomIntegerArrayOfLength:ARRAY_SIZE];
+    [Sort dumpArray:randomIntegers];    
+    [Sort bubbleSortArray:randomIntegers];
     [Sort dumpArray:randomIntegers];
-    [Sort dumpArray:randomIntegers];
+
   }
   return 0;
 }
