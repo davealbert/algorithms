@@ -10,6 +10,8 @@
 
 @implementation Sort
 
+#pragma mark - Setup Methods
+
 + (NSMutableArray *)randomIntegerArrayOfLength:(int)length {
   NSMutableArray *arr = [[NSMutableArray alloc] initWithCapacity:length];
 
@@ -18,6 +20,8 @@
   }
   return arr;
 }
+
+#pragma mark - Output Methods 
 
 + (void)dumpArray:(NSArray *)array {
   NSString *string = [[NSMutableString alloc] init];
@@ -46,12 +50,16 @@
   return isOK;
 }
 
+#pragma mark - Suppoting Methods
+
 + (void)swapArray:(NSMutableArray *)originalArray pos1:(int)x pos2:(int)y {
   NSNumber *temp = [originalArray objectAtIndex:x];
   [originalArray replaceObjectAtIndex:x withObject:[originalArray objectAtIndex:y]];
   [originalArray replaceObjectAtIndex:y withObject:temp];
 
 }
+
+#pragma mark - Bubble Sort
 
 + (void)bubbleSortArray:(NSMutableArray *)originalArray {
   int length = (int)[originalArray count] - 1;
@@ -64,6 +72,8 @@
     }
   }
 }
+
+#pragma mark - Quick Sort
 
 + (int)partitionArray:(NSMutableArray *)originalArray start:(int)start end:(int)end {
   int pivot, i, j;
@@ -91,5 +101,7 @@
     [Sort quickSortArray:originalArray start:j+1 end:end];
   }
 }
+
+#pragma mark - Merge Sort
 
 @end

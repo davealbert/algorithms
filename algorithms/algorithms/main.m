@@ -19,9 +19,11 @@ int main(int argc, const char * argv[]) {
     NSMutableArray *bubble = [Sort randomIntegerArrayOfLength:ARRAY_SIZE];
     NSMutableArray *quick = [[NSMutableArray alloc]initWithArray:[bubble copy]];
 
-    NSDate *start = [NSDate date];
+    NSDate *start, *end;
+    
+    start = [NSDate date];
     [Sort bubbleSortArray:bubble];
-    NSDate *end = [NSDate date];
+    end = [NSDate date];
     NSLog(@"Bubble End %@: %f",[Sort verifyArray:bubble]?@"OK":@"Error!",[end timeIntervalSinceDate:start]);
 
     start = [NSDate date];
