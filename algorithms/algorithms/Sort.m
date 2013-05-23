@@ -52,7 +52,7 @@
 
 #pragma mark - Suppoting Methods
 
-+ (void)swapArray:(NSMutableArray *)originalArray pos1:(int)x pos2:(int)y {
++ (void)swapElementsInArray:(NSMutableArray *)originalArray atPosition1:(int)x andPosition2:(int)y {
   NSNumber *temp = [originalArray objectAtIndex:x];
   [originalArray replaceObjectAtIndex:x withObject:[originalArray objectAtIndex:y]];
   [originalArray replaceObjectAtIndex:y withObject:temp];
@@ -67,7 +67,7 @@
     for (int j=i-1; j>=0; j--) {
       if ([[originalArray objectAtIndex:j] isGreaterThan:[originalArray objectAtIndex:i]]) {
         //swap
-        [Sort swapArray:originalArray pos1:i pos2:j];
+        [Sort swapElementsInArray:originalArray atPosition1:i andPosition2:j];
       }
     }
   }
@@ -86,9 +86,9 @@
     do ++i; while( [[originalArray objectAtIndex:i] intValue] <= pivot && i<end );
    	do --j; while( [[originalArray objectAtIndex:j] intValue] > pivot );
     if (i>=j) break;
-    [Sort swapArray:originalArray pos1:i pos2:j];
+    [Sort swapElementsInArray:originalArray atPosition1:i andPosition2:j];
   }
-  [Sort swapArray:originalArray pos1:start pos2:j];
+  [Sort swapElementsInArray:originalArray atPosition1:start andPosition2:j];
 
   return j;
 }
