@@ -21,7 +21,7 @@
   return arr;
 }
 
-#pragma mark - Output Methods 
+#pragma mark - Output Methods
 
 + (void)dumpArray:(NSArray *)array {
   NSString *string = [[NSMutableString alloc] init];
@@ -56,7 +56,6 @@
   NSNumber *temp = [originalArray objectAtIndex:x];
   [originalArray replaceObjectAtIndex:x withObject:[originalArray objectAtIndex:y]];
   [originalArray replaceObjectAtIndex:y withObject:temp];
-
 }
 
 #pragma mark - Bubble Sort
@@ -78,7 +77,9 @@
 + (int)partitionArray:(NSMutableArray *)originalArray start:(int)start end:(int)end {
   int pivot, i, j;
 
-  pivot = [[originalArray objectAtIndex:start]intValue];
+  // Choose our pivot point.
+  //  - This is not an efficient pivot point for a nearly sorted list
+  pivot = [[originalArray objectAtIndex:start] intValue];
   i = start;
   j = end + 1;
 
